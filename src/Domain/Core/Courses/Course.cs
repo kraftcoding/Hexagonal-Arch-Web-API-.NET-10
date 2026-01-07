@@ -11,8 +11,7 @@ namespace NetCoreHexagonal.Domain.Core.Courses
             Name = name;
         }
 
-#pragma warning disable CS8618
         private Course() { }
-#pragma warning restore CS8618
+
     }
 }

@@ -14,8 +14,7 @@ namespace NetCoreHexagonal.Domain.Core.Students
             Course = course;
         }
 
-        #pragma warning disable CS8618
+       
         private Enrollment() { }
-        #pragma warning restore CS8618
-    }
+        
 }

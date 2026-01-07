@@ -29,8 +29,7 @@ namespace NetCoreHexagonal.Domain.Core.Students
             FavoriteCourse = newFavoriteCourse;
         }
 
-#pragma warning disable CS8618
         private Student() { }
-#pragma warning restore CS8618
+
     }
 }
