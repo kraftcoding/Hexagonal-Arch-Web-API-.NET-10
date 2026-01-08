@@ -11,10 +11,13 @@ namespace NetCoreHexagonal.UnitTests.Fakes.Persistence
         public IStudentsRepository Students { get; }
         public ICoursesRepository Courses { get; }
 
+        public IBooksRepository Books { get; }
+
         public SchoolContextFake()
         {
             Students = new StudentsRepositoryFake();
             Courses = new CoursesRepositoryFake();
+            Books = new BooksRepositoryFake();
         }
 
         public void Dispose()

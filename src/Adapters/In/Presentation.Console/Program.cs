@@ -34,7 +34,7 @@ foreach (var name in courseNames)
     await schoolService.RegisterCourse(new RegisterCourseDto(name));
 
 await schoolService.RegisterStudent(new RegisterStudentDto("Otto", courseNames.First()));
-await schoolService.EnrollStudent(new EnrollStudentDto("Otto", "Physics"));
+await schoolService.EnrollStudent(new EnrollStudentDto("Otto", "Physics", "BookTest"));
 
 var schoolContext = sp.GetRequiredService<ISchoolContext>();
 var student = await schoolContext.Students.GetByNameAsync("Otto".ToStudentName());

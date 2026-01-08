@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NetCoreHexagonal.Domain.Core.Books;
 using NetCoreHexagonal.Domain.Core.Courses;
 using NetCoreHexagonal.Domain.Core.Students;
 
@@ -9,6 +10,7 @@ namespace NetCoreHexagonal.Persistence.Design
     {
         public DbSet<Student> Students => Set<Student>();
         public DbSet<Course> Courses => Set<Course>();
+        public DbSet<Book> Books => Set<Book>();
 
         private readonly string _connectionString;
         private readonly bool _useConsoleLogger;
@@ -50,11 +52,18 @@ namespace NetCoreHexagonal.Persistence.Design
                 b.Property(e => e.Name).HasConversion(e => e.Name, e => e.ToCourseName());
             });
 
+            modelBuilder.Entity<Book>(b =>
+            {
+                b.HasKey(e => e.Id);
+                b.Property(e => e.Name).HasConversion(e => e.Name, e => e.ToBookName());
+            });
+
             modelBuilder.Entity<Enrollment>(b =>
             {
                 b.HasKey(e => e.Id);
                 b.HasOne(p => p.Student).WithMany(p => p.Enrollments);
                 b.HasOne(p => p.Course).WithMany();
+                b.HasOne(p => p.Book).WithMany();
             });
         }
     }

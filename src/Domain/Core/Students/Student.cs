@@ -1,4 +1,5 @@
 ﻿using NetCoreHexagonal.Domain.Commons;
+using NetCoreHexagonal.Domain.Core.Books;
 using NetCoreHexagonal.Domain.Core.Courses;
 
 namespace NetCoreHexagonal.Domain.Core.Students
@@ -18,9 +19,9 @@ namespace NetCoreHexagonal.Domain.Core.Students
             _enrollments = new List<Enrollment>();
         }
 
-        public void EnrollIn(Course course)
+        public void EnrollIn(Course course, Book book)
         {
-            _enrollments.Add(new Enrollment(this, course));
+            _enrollments.Add(new Enrollment(this, course, book));
             RaiseEvent(new StudentEnrolledEvent(Name));
         }
 

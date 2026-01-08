@@ -1,12 +1,12 @@
-﻿using NetCoreHexagonal.Domain.Core.Courses;
+﻿using NetCoreHexagonal.Domain.Core.Books;
 
 namespace NetCoreHexagonal.Application.Ports.Out.Persistence
 {
-    public interface ICoursesRepository
+    public interface IBooksRepository
     {
-        Task<IReadOnlyList<Course>> GetAllAsync();
-        Task<Course?> GetByIdAsync(Guid id);
-        Task<Course?> GetByNameAsync(CourseName name);
-        void Register(Course course);
+        Task<IReadOnlyList<Book>> GetAllAsync();
+        Task<Book?> GetByIdAsync(Guid id);
+        Task<Book?> GetByNameAsync(BookName name);
+        void Register(Book Book);
     }
 }

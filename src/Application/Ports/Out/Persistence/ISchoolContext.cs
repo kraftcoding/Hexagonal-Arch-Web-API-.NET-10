@@ -6,6 +6,7 @@ namespace NetCoreHexagonal.Application.Ports.Out.Persistence
     {
         ICoursesRepository Courses { get; }
         IStudentsRepository Students { get; }
+        IBooksRepository Books { get; }
 
         Task<IReadOnlyList<RootAggregate>> SaveChangesAsync();
     }

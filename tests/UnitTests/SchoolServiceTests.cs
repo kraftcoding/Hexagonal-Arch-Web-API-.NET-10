@@ -41,7 +41,7 @@ namespace NetCoreHexagonal.UnitTests
             var registerStudentDto = new RegisterStudentDto("Jose", registerCourseDto1.Name);
             await schoolService.RegisterStudent(registerStudentDto);
 
-            await schoolService.EnrollStudent(new EnrollStudentDto(registerStudentDto.Name, registerCourseDto2.Name));
+            await schoolService.EnrollStudent(new EnrollStudentDto(registerStudentDto.Name, registerCourseDto2.Name, "BookTest"));
 
             var student = await schoolContext.Students.GetByNameAsync(registerStudentDto.Name.ToStudentName());
             Assert.NotNull(student);

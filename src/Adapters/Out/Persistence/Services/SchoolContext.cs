@@ -10,12 +10,14 @@ namespace NetCoreHexagonal.Persistence.Services
 
         public IStudentsRepository Students { get; }
         public ICoursesRepository Courses { get; }
+        public IBooksRepository Books { get; }
 
         public SchoolContext(SchoolDbContext dbContext)
         {
             this.dbContext = dbContext;
             Students = new StudentsRepository(dbContext);
             Courses = new CoursesRepository(dbContext.Courses);
+            Books = new BooksRepository(dbContext.Books);
         }
 
         public async Task<IReadOnlyList<RootAggregate>> SaveChangesAsync()

@@ -62,5 +62,25 @@ namespace NetCoreHexagonal.WebApi.Controllers
 
             return NoContent();
         }
+
+        // ARTICLE EXAMPLE METHOD TO SHOW ADDING NEW FEATURES
+
+        [HttpPost("books")]
+        public async Task<ActionResult> RegisterBook([FromBody] RegisterBookDto dto)
+        {
+            logger.LogInformation($"Registering {dto}...");
+
+            var courseDto = await schoolService.RegisterBook(dto);
+
+            return Ok(courseDto);
+        }
+
+        [HttpGet("books")]
+        public async Task<ActionResult> GetAllBooks()
+        {
+            var courses = await schoolService.GetAllBooks();
+
+            return Ok(courses);
+        }
     }
 }

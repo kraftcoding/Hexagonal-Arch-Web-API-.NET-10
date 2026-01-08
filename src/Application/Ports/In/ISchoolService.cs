@@ -9,5 +9,7 @@ namespace NetCoreHexagonal.Application.Ports.In
         Task<CourseDto> RegisterCourse(RegisterCourseDto dto);
         Task<StudentDto?> RegisterStudent(RegisterStudentDto dto);
         Task EnrollStudent(EnrollStudentDto dto);
+        Task<BookDto> RegisterBook(RegisterBookDto dto);
+        Task<IReadOnlyList<BookDto>> GetAllBooks();
     }
 }
