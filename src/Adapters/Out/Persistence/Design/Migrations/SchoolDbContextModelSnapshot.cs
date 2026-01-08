@@ -17,10 +17,25 @@ namespace NetCoreHexagonal.Persistence.Design.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "10.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("NetCoreHexagonal.Domain.Core.Books.Book", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Books");
+                });
 
             modelBuilder.Entity("NetCoreHexagonal.Domain.Core.Courses.Course", b =>
                 {
@@ -43,6 +58,9 @@ namespace NetCoreHexagonal.Persistence.Design.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
@@ -50,6 +68,8 @@ namespace NetCoreHexagonal.Persistence.Design.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookId");
 
                     b.HasIndex("CourseId");
 
@@ -80,6 +100,12 @@ namespace NetCoreHexagonal.Persistence.Design.Migrations
 
             modelBuilder.Entity("NetCoreHexagonal.Domain.Core.Students.Enrollment", b =>
                 {
+                    b.HasOne("NetCoreHexagonal.Domain.Core.Books.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("NetCoreHexagonal.Domain.Core.Courses.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
@@ -91,6 +117,8 @@ namespace NetCoreHexagonal.Persistence.Design.Migrations
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Book");
 
                     b.Navigation("Course");
 

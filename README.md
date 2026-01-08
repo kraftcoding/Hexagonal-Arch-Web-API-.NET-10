@@ -1,6 +1,18 @@
 # .NET 10 Web API with Hexagonal Architecture
 .NET 10 Web API example built with hexagonal architecture (ports and adapters). It includes unit, integration and architectural tests together with cosole a aplication. This architecture helps to visualize the solution global workflow because it is implicit in its organization.
 
+## Migrations
+
+To crete migrations for the Persistence project, use the following command:
+```
+Add-Migration -Name InitialCreate -Project NetCoreHexagonal.Persistence -StartupProject NetCoreHexagonal.Persistence
+```
+
+To apply the migrations to the database, use the following command:
+```
+update-database -StartupProject NetCoreHexagonal.Persistence
+```
+
 ## About the solution
 Below is a concise summary of what each project in the solution is responsible for.
 
